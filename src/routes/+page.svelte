@@ -9,7 +9,7 @@
   <div class="alchemy flex items-center justify-center pb-10">
     <div class="second-cont w-3xl">
       <h1 class=" text-6xl flex items-center gap-10 font-bold">
-        <img src="./Alchemist.webp" alt="" class="logo size-16" />
+        <img src="/Alchemist.webp" alt="" class="logo size-16" />
         <span class="font alchemizefont">Alchemize</span>
       </h1>
       <div class="description">
@@ -45,7 +45,7 @@
 <style>
   @import url("https://fonts.googleapis.com/css2?family=Saira+Stencil:ital,wght@0,100..900;1,100..900&display=swap");
   .img {
-    background-image: url("./bg2.webp");
+    background-image: url("/bg2.webp");
     background-size: cover;
     background-position: center;
   }
