@@ -28,9 +28,18 @@
               placeholder="Enter your Email"
               class="h-10 w-100 border border-red-500 mt-5 rounded-l-md text-gray-400 pl-2 outline-none"
             />
-            <button class="h-10 w-28 bg-red-500 text-gray-200 font-bold border border-red-600 mt-5 rounded-r-md hover:bg-red-500 ml-1 text-md">
+            <a href="https://rsvp.hackclub.community/alchemize-ysws" target="_blank">
+              <button class="h-10 w-28 bg-red-600 text-gray-200 font-bold border border-red-600 mt-5 hover:bg-red-500 ml-1 text-md">
               Get Started
             </button>
+            
+            </a>
+                        <a href="https://hackclub.enterprise.slack.com/archives/C0ASY6R552R" target="_blank">
+              <button class="h-10 w-28 bg-gray-600 text-gray-300 font-bold border border-gray-600 mt-5 rounded-r-md hover:bg-gray-500 hover:text-gray-300 ml-1 text-md">
+              Join Slack!!
+            </button>
+            
+            </a>
           </div>
         </div>
       </div>
