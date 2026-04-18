@@ -21,7 +21,7 @@
     })
     
 </script>
-<main class="root h-screen w-screen bg-gray-900 flex items-center justify-center text-white flex-col">
+<main class="root h-full w-full grad-bg flex items-center justify-center text-white flex-col">
     <h1 class="text-4xl">Hello {name}!</h1>
     <h2 class="text-xl">{email}</h2>
     <h2 class="text-md">Unfortunately, the dashboard is still work in progress.</h2>
@@ -29,5 +29,7 @@
 
 </main>
 <style>
-
+.grad-bg{
+    background: #000000ab;
+}
 </style>
