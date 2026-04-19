@@ -3,6 +3,9 @@
 	import { PUBLIC_HACKCLUB_AUTH } from "$env/static/public"
 	let clientId = PUBLIC_HACKCLUB_AUTH
 	let authUrl = `https://auth.hackclub.com/oauth/authorize?client_id=${clientId}&response_type=code&scope=openid+profile+email&redirect_uri=http%3A%2F%2Flocalhost%3A5173%2Fcallback`
+  if (document.cookie.split('; ').find(row => row.startsWith('id_token='))) {
+    authUrl = `./dashboard`
+  }
 </script>
 
 <Nav />
