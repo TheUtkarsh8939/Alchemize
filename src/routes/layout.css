@@ -1,4 +1,6 @@
 @import 'tailwindcss';
 body{
     overflow-x: hidden;
+    width: 100vw;
+    margin: 0;
 }
