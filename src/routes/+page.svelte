@@ -1,15 +1,16 @@
 <script>
 	import Nav from "$lib/Nav.svelte"
-	import { PUBLIC_HACKCLUB_AUTH } from "$env/static/public"
+	import { PUBLIC_HACKCLUB_AUTH,PUBLIC_HACKCLUB_REDIRECT } from "$env/static/public"
 	import { browser } from "$app/environment"
 	import { onMount } from "svelte"
 	const clientId = PUBLIC_HACKCLUB_AUTH
+	const uri = encodeURIComponent(PUBLIC_HACKCLUB_REDIRECT)
 	const hasIdToken =
 		browser &&
 		document.cookie.split("; ").find(row => row.startsWith("id_token="))
 	const authUrl = hasIdToken
 		? `./dashboard`
-		: `https://auth.hackclub.com/oauth/authorize?client_id=${clientId}&response_type=code&scope=openid+profile+email&redirect_uri=http%3A%2F%2Flocalhost%3A5173%2Fcallback`
+		: `https://auth.hackclub.com/oauth/authorize?client_id=${clientId}&response_type=code&scope=openid+profile+email&redirect_uri=${uri}`
 
 	onMount(() => {
 		const blob = document.getElementById("blob")
@@ -55,14 +56,14 @@
 						<input
 							type="text"
 							placeholder="Enter your Email"
-							class="h-10 w-[clamp(200px,80vw,400px)] email border border-red-500 mt-5 rounded-l-md text-gray-400 pl-2 outline-none"
+							class="h-10 w-[clamp(200px,80vw,400px)] relative z-10 email border border-red-500 mt-5 rounded-l-md text-gray-400 pl-2 outline-none"
 						/>
 						<div
 							class="flex mt-5 h-10 buttons w-[clamp(200px,80vw,400px)] gap-1"
 						>
 							<a href={authUrl} class=" button w-28">
 								<button
-									class="h-10 w-full bg-red-600 get-started text-gray-200 font-bold border border-red-600 hover:bg-red-500 ml-1 text-md"
+									class="h-10 relative z-10 w-full bg-red-600 get-started text-gray-200 font-bold border border-red-600 hover:bg-red-500 ml-1 text-md"
 								>
 									Get Started
 								</button>
@@ -73,7 +74,7 @@
 								class="button w-28"
 							>
 								<button
-									class="h-10 w-full bg-gray-600 slack text-gray-300 font-bold border border-gray-600 rounded-r-md hover:bg-gray-500 hover:text-gray-300 ml-1 text-md"
+									class="relative h-10 z-10 w-full bg-gray-600 slack text-gray-300 font-bold border border-gray-600 rounded-r-md hover:bg-gray-500 hover:text-gray-300 ml-1 text-md"
 								>
 									Join Slack!!
 								</button>
