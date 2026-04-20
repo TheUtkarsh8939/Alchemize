@@ -2,6 +2,7 @@
 	import Nav from "$lib/Nav.svelte"
 	import { PUBLIC_HACKCLUB_AUTH } from "$env/static/public"
 	import { browser } from "$app/environment"
+	import { onMount } from "svelte"
 	const clientId = PUBLIC_HACKCLUB_AUTH
 	const hasIdToken =
 		browser &&
@@ -9,6 +10,21 @@
 	const authUrl = hasIdToken
 		? `./dashboard`
 		: `https://auth.hackclub.com/oauth/authorize?client_id=${clientId}&response_type=code&scope=openid+profile+email&redirect_uri=http%3A%2F%2Flocalhost%3A5173%2Fcallback`
+
+	onMount(() => {
+		const blob = document.getElementById("blob")
+		console.log(blob)
+
+		window.addEventListener("mousemove", event => {
+			blob?.animate(
+				{
+					top: `${event.pageY - 150}px`,
+					left: `${event.pageX - 150}px`,
+				},
+				{ duration: 700, fill: "forwards" }
+			)
+		})
+	})
 </script>
 
 <Nav />
@@ -67,6 +83,10 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	<div class="scroll-down text-gray-400 absolute bottom-10 text-xl flex items-center gap-2">
+		<i class="fa-solid fa-computer-mouse"></i>
+		Scroll Down
 	</div>
 </div>
 <div class="absolute -z-10 w-screen h-screen top-0">
@@ -138,7 +158,7 @@
 		<h2 class="text-5xl alchemizefont text-[#fc6565]">Season 1 Themes</h2>
 		<div class="grid grid-cols-3 gap-10 s1t">
 			<div
-				class="card flex w-90 h-48 border border-blue-600 border-dashed flex flex-col items-center justify-center rounded-md"
+				class="card flex blue-card w-90 h-48 border border-blue-600 border-dashed flex flex-col items-center justify-center rounded-md"
 			>
 				<i class="fa-solid fa-jedi mb-2 text-3xl"></i>
 				<h2 class="text-3xl text-justify alchemizefont font-bold">Sci-Fi</h2>
@@ -164,10 +184,10 @@
 				</p>
 			</div>
 			<div
-				class="card flex w-90 h-48 border border-green-600 border-dashed flex flex-col items-center justify-center rounded-md"
+				class="card flex green-card w-90 h-48 border border-green-600 border-dashed flex flex-col items-center justify-center rounded-md"
 			>
 				<i class="fa-solid fa-tencent-weibo text-3xl mb-2"></i>
-			
+
 				<h2 class="text-3xl text-justify alchemizefont font-bold">Tribute</h2>
 				<p
 					class="text-gray-300 text-center text-sm mt-2 text-justify w-3/4 leading-5"
@@ -178,7 +198,26 @@
 			</div>
 		</div>
 	</div>
+	<div class="abtHC flex flex-col items-center mt-28 gap-5">
+		<h2 class="text-5xl alchemizefont text-[#fc6565] flex">
+			About <img src="./hackclub.png" alt="Hackclub" class="h-16 width-auto" />
+		</h2>
+		<p
+			class="card text-gray-300 text-center text-md text-justify w-[clamp(300px,80vw,600px)] leading-5 border border-red-600 border-dashed p-5 rounded-md"
+		>
+			Hack Club is a 501(c)(3) nonprofit that supports high school coding clubs
+			around the world. Founded in 2014, Hack Club has grown to over 400 clubs
+			in 50+ countries, with a community of over 110,000 students. Hack Club
+			hosts Hackathons and programs around the Globe to allow Teenagers to
+			learn, create and ship their projects. We provide tools, funding and
+			community to help students turn their ideas into reality.
+		</p>
+	</div>
 </div>
+<div
+	id="blob"
+	class="background-gradient absolute z-1 left-0 blur-[180px] size-45"
+></div>
 
 <style>
 	@import url("https://fonts.googleapis.com/css2?family=Saira+Stencil:ital,wght@0,100..900;1,100..900&display=swap");
@@ -240,13 +279,29 @@
 		.slack {
 			border-radius: 0px 0px 10px 0px !important;
 		}
-		.hdiw{
+		.hdiw {
 			grid-template-columns: 1fr !important;
 		}
 	}
-	@media  screen and (max-width:1000px) {
-		.s1t{
+	@media screen and (max-width: 1000px) {
+		.s1t {
 			grid-template-columns: 1fr !important;
 		}
+	}
+	.card:hover {
+		box-shadow: 0px 0px 10px 2px #ff0000 !important;
+	}
+	.blue-card:hover {
+		box-shadow: 0px 0px 10px 2px #3b82f6 !important;
+	}
+	.green-card:hover {
+		box-shadow: 0px 0px 10px 2px #22c55e !important;
+	}
+	.background-gradient {
+		background: linear-gradient(45deg, rgb(255, 0, 0), rgb(247, 0, 255));
+		animation: gradientAnimation 10s ease infinite;
+	}
+	.backblur {
+		backdrop-filter: blur(20px);
 	}
 </style>
