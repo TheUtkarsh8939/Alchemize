@@ -13,6 +13,7 @@ export const GET: RequestHandler = async ({ url, cookies }) => {
       },
     },
   );
+  
   console.log("Airtable response status:", authorize.status);
   if (!authorize.ok) {
     const errorText = await authorize.text();

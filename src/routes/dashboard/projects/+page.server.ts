@@ -22,6 +22,7 @@ export const actions = {
         const projectCode = formData.get('github') as string;
         const oldProject = formData.get('projectUpdate') as string;
         const hackatimeProject = formData.get('hackatime') as string;
+        const theme = formData.get('theme') as string;
         const response = await fetch(`https://api.airtable.com/v0/${AIRTABLE_CLIENT}/Projects`, {
 			method: 'POST',
 			headers: {
@@ -41,7 +42,8 @@ export const actions = {
                     languages:"",
                     update:oldProject == "checked"? "true":"false",
                     journals:"",
-                    owner: email
+                    owner: email,
+                    Theme: theme,
 
 				}
 			})
