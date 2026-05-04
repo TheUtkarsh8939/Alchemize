@@ -14,17 +14,20 @@
 			languages: ""
 			log: ""
 			owner: string
+			status: string
 		}
 	}
 	let projectBeingUpdated: Project | null = $state(null)
 	let { data } = $props()
 	let newProjWindowOpened = $state(false)
 	let updateProjWindowOpened = $state(false)
+	console.log(data?.projects)
+
 	const openNewProjWindow = () => {
 		newProjWindowOpened = true
 		console.log("Opening New Project Window")
 	}
-	
+
 	const closeNewProjWindow = () => {
 		newProjWindowOpened = false
 	}
@@ -34,7 +37,6 @@
 	let styleNewProjWindow = $derived(newProjWindowOpened ? "flex" : "none")
 	let styleUpdateProjWindow = $derived(updateProjWindowOpened ? "flex" : "none")
 	let projects: Project[] = $derived(data?.projects ?? [])
-	console.log(projects)
 	type HackatimeProject = {
 		name?: string
 		project_name?: string
@@ -90,6 +92,47 @@
 	function openUpdateProjWindow(project: Project) {
 		projectBeingUpdated = project
 		updateProjWindowOpened = true
+	}
+	let showRotator = $state(false)
+	async function shipProject(project: Project | null) {
+		showRotator = true
+		if (project == null) return
+		const projectHackatimeNames = project.fields.hackatime
+		const hackatimeSeconds = hackSecondsByName.get(
+			projectHackatimeNames.trim().toLowerCase()
+		)
+		if (hackatimeSeconds === undefined) {
+			alert(
+				"Error: The Hackatime project associated with this project was not found. Please make sure the Hackatime project name is correct."
+			)
+			return
+		}
+		const hackatimeMins = Math.floor(hackatimeSeconds / 60)
+		const recordId = project.id
+		const log = project.fields.log
+		const response = await fetch("/dashboard/projects/ship", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: `{
+  					"log":"${log}",
+  					"hackatime":${hackatimeMins},
+  					"recordId":"${recordId}"
+				}`,
+			credentials: "include",
+		})
+		if (response.ok) {
+			alert("Project shipped successfully!")
+			showRotator = false
+		} else {
+			alert(
+				"Error shipping project. Error Code: " +
+					response.status +
+					" Please Contact TheUtkarsh8939 on Slack"
+			)
+			showRotator = false
+		}
 	}
 </script>
 
@@ -251,15 +294,40 @@
 		>
 			<i class="fa-solid fa-times"></i>
 		</button>
-		<h1 class="text-3xl mb-5 w-full pl-10">
-			Update {projectBeingUpdated?.fields.Name}
+		<h1
+			class="text-3xl mb-5 w-full pl-10 flex items-center justify-between px-10"
+		>
+			Update {projectBeingUpdated?.fields.Name}:{formatHours(
+				hackSecondsByName.get(
+					projectBeingUpdated?.fields.hackatime.trim().toLowerCase() as string
+				)
+			)}
+			<button
+				class="ship border-orange-700 border border-dotted p-3 rounded-2xl cursor-pointer flex gap-5 items-center"
+				onclick={() => shipProject(projectBeingUpdated)}
+			>
+				<i class="fa-solid fa-ship"></i>
+				{#if showRotator}
+					<div
+						class="w-7 h-7 border-4 border-gray-600 border-t-white rounded-full animate-spin"
+					></div>
+				{/if}
+
+				Ship
+			</button>
 		</h1>
 		<form
 			method="POST"
 			class="w-full flex-1 flex flex-col form justify-start gap-5 px-10 overflow-y-auto pb-20"
 			action="?/update"
 		>
-			<input type="text" class="hidden" id="recordId" name="recordId" value={projectBeingUpdated?.id} />
+			<input
+				type="text"
+				class="hidden"
+				id="recordId"
+				name="recordId"
+				value={projectBeingUpdated?.id}
+			/>
 
 			<div>
 				<span>Project Name:</span> <br />
