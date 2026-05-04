@@ -1,6 +1,8 @@
 <script lang="ts">
-	import Sidenav from "$lib/components/sidenav.svelte"
-	let { children } = $props()
+    import Sidenav from "$lib/components/sidenav.svelte"
+    import { navigating } from '$app/stores'
+    
+    let { children } = $props()
 	import { PUBLIC_HACKATIME_AUTH,PUBLIC_HACKATIME_REDIRECT } from "$env/static/public"
     console.log("Hackatime Auth:", PUBLIC_HACKATIME_AUTH);
 	let unVerified = true
@@ -15,6 +17,16 @@
 </script>
 
 <svelte:head><link rel="icon" href="/Alchemist.webp" /></svelte:head>
+
+{#if $navigating}
+    <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 pointer-events-none">
+        <div class="flex flex-col items-center gap-4">
+            <div class="w-12 h-12 border-4 border-gray-600 border-t-red-600 rounded-full animate-spin"></div>
+            <p class="text-white text-lg">Loading...</p>
+        </div>
+    </div>
+{/if}
+
 <div class="root h-screen w-screen flex items-center justify-start text-white">
 	<Sidenav />
 	{#if unVerified}

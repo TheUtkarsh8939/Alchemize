@@ -1,13 +1,14 @@
 <script lang="ts">
 	interface Project {
+		id: string
 		createdTime: string
 		fields: {
 			Name: string
 			description: string
-			github?: string
+			code?: string
 			demo?: string
 			type: string
-			projectUpdate?: boolean
+			update?: boolean
 			hackatime: string
 			journals: ""
 			languages: ""
@@ -15,18 +16,25 @@
 			owner: string
 		}
 	}
-
+	let projectBeingUpdated: Project | null = $state(null)
 	let { data } = $props()
 	let newProjWindowOpened = $state(false)
+	let updateProjWindowOpened = $state(false)
 	const openNewProjWindow = () => {
 		newProjWindowOpened = true
 		console.log("Opening New Project Window")
 	}
+	
 	const closeNewProjWindow = () => {
 		newProjWindowOpened = false
 	}
+	const closeUpdateProjWindow = () => {
+		updateProjWindowOpened = false
+	}
 	let styleNewProjWindow = $derived(newProjWindowOpened ? "flex" : "none")
+	let styleUpdateProjWindow = $derived(updateProjWindowOpened ? "flex" : "none")
 	let projects: Project[] = $derived(data?.projects ?? [])
+	console.log(projects)
 	type HackatimeProject = {
 		name?: string
 		project_name?: string
@@ -70,7 +78,7 @@
 		new Map(
 			hacks.map(hack => [
 				(hack.name ?? "").trim().toLowerCase(),
-				hack.total_seconds ?? 0
+				hack.total_seconds ?? 0,
 			])
 		)
 	)
@@ -79,6 +87,10 @@
 		const hours = (totalSeconds ?? 0) / 3600
 		return `${hours.toFixed(1)}hr`
 	}
+	function openUpdateProjWindow(project: Project) {
+		projectBeingUpdated = project
+		updateProjWindowOpened = true
+	}
 </script>
 
 <main
@@ -86,17 +98,19 @@
 >
 	<h1 class="absolute top-10">Projects</h1>
 	{#each projects as project}
-		<div
-			class="new-proj h-80 w-50 border-red-500 border-dashed border flex flex-col items-center justify-center gap-5 rounded-lg"
-		>
-			<span class="text-2xl alchemizefont">{project.fields.Name}</span>
-			
-			<span class="text-lg hours">
-				{formatHours(
-					hackSecondsByName.get(project.fields.hackatime.trim().toLowerCase())
-				)}
-			</span>
-		</div>
+		<button onclick={() => openUpdateProjWindow(project)}>
+			<div
+				class="new-proj h-80 w-50 border-red-500 border-dashed border flex flex-col items-center justify-center gap-5 rounded-lg"
+			>
+				<span class="text-2xl alchemizefont">{project.fields.Name}</span>
+
+				<span class="text-lg hours">
+					{formatHours(
+						hackSecondsByName.get(project.fields.hackatime.trim().toLowerCase())
+					)}
+				</span>
+			</div>
+		</button>
 	{/each}
 	<div class="projects">
 		<button class="proj-btn cursor-pointer" onclick={openNewProjWindow}>
@@ -128,6 +142,7 @@
 		<form
 			method="POST"
 			class="w-full flex-1 flex flex-col form justify-start gap-5 px-10 overflow-y-auto pb-20"
+			action="?/create"
 		>
 			<div>
 				<span>Project Name:</span> <br />
@@ -183,7 +198,7 @@
 					<option value="hardware">Hardware</option>
 				</select>
 			</div>
-						<div>
+			<div>
 				<label for="theme">Theme:</label>
 				<select name="theme" id="theme" class="input">
 					<option value="Sci-fi">Sci-Fi</option>
@@ -196,7 +211,7 @@
 				<select name="hackatime" id="hackatime" class="input">
 					{#each availableHacks as hack}
 						<option value={hack.name}>
-							{hack.name }
+							{hack.name}
 						</option>
 					{/each}
 				</select>
@@ -224,7 +239,7 @@
 <div
 	class="newProjectOvr h-screen w-screen items-center justify-center absolute"
 	id="newProjectOvr"
-	style="display: none;"
+	style="display: {styleUpdateProjWindow};"
 >
 	<div
 		class="relative newProjectForm h-1/2 w-3/5 bg-black pt-5 border-red-500 border-2 border-dashed flex items-center rounded-lg flex-col"
@@ -232,15 +247,20 @@
 		<button
 			class="cutButton absolute top-5 right-5 cursor-pointer"
 			aria-label="Cut"
-			onclick={closeNewProjWindow}
+			onclick={closeUpdateProjWindow}
 		>
 			<i class="fa-solid fa-times"></i>
 		</button>
-		<h1 class="text-3xl mb-5 w-full pl-10">Update [Placeholder, project]</h1>
+		<h1 class="text-3xl mb-5 w-full pl-10">
+			Update {projectBeingUpdated?.fields.Name}
+		</h1>
 		<form
 			method="POST"
 			class="w-full flex-1 flex flex-col form justify-start gap-5 px-10 overflow-y-auto pb-20"
+			action="?/update"
 		>
+			<input type="text" class="hidden" id="recordId" name="recordId" value={projectBeingUpdated?.id} />
+
 			<div>
 				<span>Project Name:</span> <br />
 				<input
@@ -250,6 +270,7 @@
 					required
 					placeholder="Project Name"
 					class="w-full input"
+					value={projectBeingUpdated?.fields.Name}
 				/>
 			</div>
 			<div>
@@ -261,6 +282,7 @@
 					required
 					placeholder="Project Description(Markdown Allowed)"
 					class="w-full h-50 input"
+					value={projectBeingUpdated?.fields.description}
 				></textarea>
 			</div>
 
@@ -272,6 +294,7 @@
 					name="github"
 					placeholder="https://github.com/user/repo"
 					class="input"
+					value={projectBeingUpdated?.fields.code}
 				/>
 			</div>
 
@@ -283,11 +306,14 @@
 					name="demo"
 					placeholder="https://example.com/demo"
 					class="input"
+					value={projectBeingUpdated?.fields.demo}
 				/>
 			</div>
 			<div>
 				<label for="type">Type:</label>
 				<select name="type" id="type" class="input">
+					<option value="web">{projectBeingUpdated?.fields.type}</option>
+
 					<option value="web">Web Playable</option>
 					<option value="mobile">Mobile App</option>
 					<option value="desktop">Desktop App</option>
@@ -298,9 +324,12 @@
 			<div>
 				<label for="type">Hackatime:</label>
 				<select name="hackatime" id="hackatime" class="input">
+					<option value={projectBeingUpdated?.fields.hackatime}>
+						{projectBeingUpdated?.fields.hackatime}
+					</option>
 					{#each availableHacks as hack}
 						<option value={hack.name}>
-							{hack.name }
+							{hack.name}
 						</option>
 					{/each}
 				</select>
@@ -311,6 +340,7 @@
 					id="projectUpdate"
 					name="projectUpdate"
 					class=""
+					checked={projectBeingUpdated?.fields.update}
 				/>
 				<label for="projectUpdate"
 					>My project is an update <br /> Tick this if your project started before
@@ -320,7 +350,7 @@
 			<button
 				type="submit"
 				class="w-40 border-red-500 border-dotted h-10 border-2 p-2 text-lg flex items-center justify-center cursor-pointer rounded-lg"
-				>Create Project</button
+				>Update Project</button
 			>
 		</form>
 	</div>
