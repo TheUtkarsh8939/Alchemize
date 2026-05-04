@@ -139,6 +139,9 @@
 <main
 	class="bg-black h-screen w-screen flex items-center justify-center text-white gap-20"
 >
+<div class="warning border-amber-600 border-2 h-20 w-4/5 absolute top-20 rounded-lg flex items-center justify-center bg-black p-10">
+	<p class="text-lg font-bold">Warning: This is a work in progress! The hackatime start date is set to an obscenely long future date so any projects will show as 0hr</p>
+</div>
 	<h1 class="absolute top-10">Projects</h1>
 	{#each projects as project}
 		<button onclick={() => openUpdateProjWindow(project)}>
