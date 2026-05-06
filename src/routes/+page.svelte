@@ -3,6 +3,7 @@
 	import { PUBLIC_HACKCLUB_AUTH,PUBLIC_HACKCLUB_REDIRECT } from "$env/static/public"
 	import { browser } from "$app/environment"
 	import { onMount } from "svelte"
+	let { data } = $props()
 	const clientId = PUBLIC_HACKCLUB_AUTH
 	const uri = encodeURIComponent(PUBLIC_HACKCLUB_REDIRECT)
 	const hasIdToken =
@@ -80,6 +81,15 @@
 								</button>
 							</a>
 						</div>
+					</div>
+					<div class="rsvp pt-3 flex items-center">
+						<div class="progress-bar w-[clamp(200px,80vw,400px)] h-1 border border-gray-700 rounded-full">
+							<div class="bg-red-600 h-full w-full" style="width: {data.rsvpCount/3}%;"></div>
+						</div>
+						<span class="text-gray-400 text-sm ml-2">{data.rsvpCount}/300 RSVPs So far</span>
+					</div>
+					<div class="rsvpLink">
+						Click Here to RSVP if you haven't already: <a href="https://rsvp.hackclub.community/alchemize-ysws" target="_blank" class="text-blue-500 hover:underline">RSVP</a>
 					</div>
 				</div>
 			</div>
