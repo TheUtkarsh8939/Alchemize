@@ -89,7 +89,7 @@
 						<span class="text-gray-400 text-sm ml-2">{data.rsvpCount}/300 RSVPs So far</span>
 					</div>
 					<div class="rsvpLink">
-						Click Here to RSVP if you haven't already: <a href="https://rsvp.hackclub.community/alchemize-ysws" target="_blank" class="text-blue-500 hover:underline">RSVP</a>
+						Click Here to RSVP if you haven't already: <a href="https://rsvp.hackclub.community/alchemize-ysws" target="_blank" class="text-blue-500 hover:underline relative z-20">RSVP</a>
 					</div>
 				</div>
 			</div>
