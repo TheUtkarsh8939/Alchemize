@@ -1,5 +1,4 @@
 <script>
-    import Nav from "$lib/Nav.svelte"
     import {marked} from "marked"
     import faq from "./faq.md?raw"
     let html = marked.parse(faq)

@@ -180,6 +180,7 @@ export const load:PageServerLoad = async ({cookies})=>{
         }
     });
     const projectsData = await projectsResponse.json();
+    console.log(hacks)
     return {
         projects: projectsData.records,
         hacks: hacks
