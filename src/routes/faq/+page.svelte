@@ -4,7 +4,7 @@
     let html = marked.parse(faq)
     import "./mdhandler.css"
 </script>
-<Nav/>
+
 <div class="fixed -z-10 w-screen h-screen top-0">
 	<div class="img absolute -z-20 w-full h-full"></div>
 	<div class="ovr h-full w-screen -z-10"></div>
