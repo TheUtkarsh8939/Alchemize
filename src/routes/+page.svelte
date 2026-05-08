@@ -6,7 +6,7 @@
 		PUBLIC_HACKCLUB_AUTH,
 		PUBLIC_HACKCLUB_REDIRECT,
 	} from "$env/static/public"
-
+	import Accordion from "$lib/components/accordion.svelte"
 	let { data } = $props()
 
 	const clientId = PUBLIC_HACKCLUB_AUTH
@@ -120,9 +120,11 @@
 
 		<section
 			id="features"
-			class="flex flex-col items-center gap-16 bg-[#1a0000] px-16 py-24 min-h-screen"
+			class="flex flex-col items-center gap-16 bg-[#1a0000] px-16 py-24"
 		>
-			<h2 class="font-alchemize text-center section-title">HOW IT WORKS</h2>
+			<h2 class="font-alchemize text-center section-title text-3xl">
+				HOW IT WORKS
+			</h2>
 
 			<div class="gap-6 grid grid-cols-1 md:grid-cols-2 w-full max-w-5xl">
 				<div class="feature-card">
@@ -159,6 +161,105 @@
 				</div>
 			</div>
 		</section>
+
+		<section
+			id="themes"
+			class="flex flex-col items-center gap-16 bg-[#1a0000] px-16 pt-12 pb-95
+			  h-auto"
+		>
+			<h2 class="font-alchemize text-center section-title text-2xl">
+				THE THREE THEMES S1
+			</h2>
+
+			<div class="gap-6 grid grid-cols-1 md:grid-cols-3 w-full max-w-5xl">
+				<div class="feature-card">
+					<!-- <span class="text-4xl">⚗️</span> -->
+					<h3 class="font-alchemize text-red-300 text-xl">Sci-Fi</h3>
+					<p class="text-gray-400 text-sm leading-relaxed">
+						Create a project based on Sci-Fi, it can be anything, a website, an
+						app, a game, a robot, anything. As long as it's based on Sci-Fi, it
+						counts.
+					</p>
+				</div>
+				<div class="feature-card">
+					<!-- <span class="text-4xl">🚀</span> -->
+					<h3 class="font-alchemize text-red-300 text-xl">Anime</h3>
+					<p class="text-gray-400 text-sm leading-relaxed">
+						Make something related to your favourite Anime charector, it can be
+						a website, an app, a game, a robot, anything. As long as it's based
+						on Anime, it counts.
+					</p>
+				</div>
+				<div class="feature-card">
+					<!-- <span class="text-4xl"></span> -->
+					<h3 class="font-alchemize text-red-300 text-xl">Tribute</h3>
+					<p class="text-gray-400 text-sm leading-relaxed">
+						Make a project that pays tribute to something, it can be a person, a
+						group, an event, anything. As long as it's a tribute, it counts.
+					</p>
+				</div>
+			</div>
+		</section>
+		<div class="w-screen leading-none -mt-[20vw]">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"
+				><path
+					fill="#2f0000"
+					fill-opacity="1"
+					d="M0,160L30,170.7C60,181,120,203,180,224C240,245,300,267,360,277.3C420,288,480,288,540,277.3C600,267,660,245,720,218.7C780,192,840,160,900,160C960,160,1020,192,1080,208C1140,224,1200,224,1260,197.3C1320,171,1380,117,1410,90.7L1440,64L1440,320L1410,320C1380,320,1320,320,1260,320C1200,320,1140,320,1080,320C1020,320,960,320,900,320C840,320,780,320,720,320C660,320,600,320,540,320C480,320,420,320,360,320C300,320,240,320,180,320C120,320,60,320,30,320L0,320Z"
+				></path></svg
+			>
+		</div>
+
+		<section
+			id="faq"
+			class="flex flex-col items-center gap-6 px-16 py-24 min-auto pb-75 h-auto bg-[#2f0000] -mt-1"
+		>
+			<h2 class="font-alchemize text-center section-title text-3xl">FAQ</h2>
+			<Accordion
+				Title="What can you ship?"
+				Content="You can Ship any project, it can be general or a theme based"
+				addClass="faq-item h-20 w-4/5 md:w-3/5 font-alchemize"
+			/>
+			<Accordion
+				Title="How do I participate?"
+				Content="Just Click on Get Started"
+				addClass="faq-item h-20 w-4/5 md:w-3/5 font-alchemize"
+			/>
+			<Accordion
+				Title="Who is Eligible?"
+				Content="Anyone between the ages of 13 and 18 and Hackclub Verified"
+				addClass="faq-item h-20 w-4/5 md:w-3/5 font-alchemize"
+			/>
+			<Accordion
+				Title="What is Hackclub?"
+				Content="Hackclub is a community of creative coders who love to build and share their projects."
+				addClass="faq-item h-20 w-4/5 md:w-3/5 font-alchemize"
+			/>
+			<Accordion
+				Title="Where can I find more information?"
+				Content="Checkout our Slack Channel <a class='text-red-200 hover:underline' target='_blank' href='https://hackclub.enterprise.slack.com/archives/C0ASY6R552R'>Here</a>"
+				addClass="faq-item h-20 w-4/5 md:w-3/5 font-alchemize"
+			/>
+		</section>
+		<div class="w-screen leading-none -mt-[30vw]">
+			<svg
+				width="100%"
+				height="100%"
+				id="svg"
+				viewBox="0 0 1440 590"
+				xmlns="http://www.w3.org/2000/svg"
+				class="transition duration-300 ease-in-out delay-150"
+				><path
+					d="M 0,600 L 0,350 C 163.46666666666664,318.4 326.9333333333333,286.8 498,287 C 669.0666666666667,287.2 847.7333333333333,319.2 1006,335 C 1164.2666666666667,350.8 1302.1333333333332,350.4 1440,350 L 1440,600 L 0,600 Z"
+					stroke="none"
+					stroke-width="0"
+					fill="#1a0000"
+					fill-opacity="1"
+					class="transition-all duration-300 ease-in-out delay-150 path-1"
+				></path></svg
+			>
+		</div>
+		<footer class="w-full px-20 -mt-30 pb-20"> Made By TheUtkarsh8939 and Coolcream with ❤️</footer>
 	</main>
 </div>
 
