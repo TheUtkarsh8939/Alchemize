@@ -58,8 +58,8 @@
 	</div>
 
 	<main class="z-10 relative">
-		<section class="flex flex-col justify-center gap-y-8 px-16 min-h-screen">
-			<div class="flex items-center gap-4">
+		<section class="flex flex-col justify-center gap-y-8 px-[clamp(20px,3vw,64px)] min-h-screen relative">
+			<div class="flex items-center gap-4 justify-self-start relative">
 				<img src="/Alchemist.webp" alt="" class="w-16 h-16" />
 				<span
 					class="font-alchemize text-primary text-2xl uppercase tracking-widest"
@@ -70,9 +70,9 @@
 
 			<h1 class="font-alchemize hero-title">ALCHEMIZE</h1>
 
-			<p class="text-red-200/80 text-2xl leading-relaxed">
+			<p class="text-red-200/80 text-[clamp(1rem,5.5vw,1.5rem)]  leading-relaxed">
 				Turn your code into prizes.<br />
-				<strong class="text-white text-3xl">And you're invited.</strong>
+				<strong class="text-white text-[clamp(1rem,6.5vw,1.75rem)]">And you're invited.</strong>
 				<br />
 				<span class="opacity-70 text-lg">Ages 13-18</span>
 			</p>
@@ -84,7 +84,7 @@
 				</div>
 			</a>
 
-			<div class="flex flex-col gap-2 max-w-sm">
+			<div class="flex flex-col gap-2 w-[clamp(120px,50vw,384px)]">
 				<div
 					class="bg-gray-900 border border-red-900/50 rounded-full w-full h-3 overflow-hidden"
 				>
@@ -188,7 +188,7 @@
 					<!-- <span class="text-4xl">🚀</span> -->
 					<h3 class="font-alchemize text-red-300 text-xl">Anime</h3>
 					<p class="text-gray-400 text-sm leading-relaxed">
-						Make something related to your favourite Anime charector, it can be
+						Make something related to your favourite Anime charecter, it can be
 						a website, an app, a game, a robot, anything. As long as it's based
 						on Anime, it counts.
 					</p>
@@ -221,30 +221,30 @@
 			<Accordion
 				Title="What can you ship?"
 				Content="You can Ship any project, it can be general or a theme based"
-				addClass="faq-item h-20 w-4/5 md:w-3/5 font-alchemize"
+				addClass="faq-item h-20 w-[clamp(120px,90vw,1084px)] font-sans"
 			/>
 			<Accordion
 				Title="How do I participate?"
 				Content="Just Click on Get Started"
-				addClass="faq-item h-20 w-4/5 md:w-3/5 font-alchemize"
+				addClass="faq-item h-20 w-[clamp(120px,90vw,1084px)] font-sans"
 			/>
 			<Accordion
 				Title="Who is Eligible?"
 				Content="Anyone between the ages of 13 and 18 and Hackclub Verified"
-				addClass="faq-item h-20 w-4/5 md:w-3/5 font-alchemize"
+				addClass="faq-item h-20 w-[clamp(120px,90vw,1084px)] font-sans"
 			/>
 			<Accordion
 				Title="What is Hackclub?"
 				Content="Hackclub is a community of creative coders who love to build and share their projects."
-				addClass="faq-item h-20 w-4/5 md:w-3/5 font-alchemize"
+				addClass="faq-item h-20 w-[clamp(120px,90vw,1084px)] font-sans"
 			/>
 			<Accordion
 				Title="Where can I find more information?"
 				Content="Checkout our Slack Channel <a class='text-red-200 hover:underline' target='_blank' href='https://hackclub.enterprise.slack.com/archives/C0ASY6R552R'>Here</a>"
-				addClass="faq-item h-20 w-4/5 md:w-3/5 font-alchemize"
+				addClass="faq-item h-20 w-[clamp(120px,90vw,1084px)] font-sans"
 			/>
 		</section>
-		<div class="w-screen leading-none -mt-[30vw]">
+		<div class="w-screen leading-none -mt-[30vw] relative">
 			<svg
 				width="100%"
 				height="100%"
@@ -261,12 +261,14 @@
 					class="transition-all duration-300 ease-in-out delay-150 path-1"
 				></path></svg
 			>
+			<footer class="w-full px-20 absolute bottom-6"> Made By TheUtkarsh8939 and Coolcream with ❤️</footer>
 		</div>
-		<footer class="w-full px-20 -mt-30 pb-20"> Made By TheUtkarsh8939 and Coolcream with ❤️</footer>
 	</main>
 </div>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
 	.background-gradient {
 		position: fixed;
 		background: linear-gradient(45deg, #7f1d1d, #dc2626);
@@ -335,7 +337,7 @@
 	}
 
 	.hero-title {
-		font-size: clamp(4rem, 12vw, 10rem);
+		font-size: clamp(2rem, 12vw, 10rem);
 		line-height: 1;
 		color: transparent;
 		-webkit-text-stroke: 3px var(--color-primary);
@@ -346,6 +348,8 @@
 		align-items: center;
 		justify-content: space-between;
 		max-width: 400px;
+		width: 50vw;
+		
 		background: var(--color-primary);
 		border: 3px solid #7f1d1d;
 		border-radius: 1rem;
@@ -363,7 +367,7 @@
 
 	.cta-text {
 		font-family: var(--font-alchemize);
-		font-size: 1.5rem;
+		font-size: clamp(1rem, 4vw, 1.5rem);
 		font-weight: 900;
 		color: white;
 	}

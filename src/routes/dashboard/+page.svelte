@@ -33,6 +33,7 @@
 </main>
 
 <style>
+
 	.grad-bg {
 		background: #000000;
 	}

@@ -8,7 +8,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Saira+Stencil:ital,wght@0,100..900;1,100..900&display=swap");
 
 @custom-variant dark (&:is(.dark *));
-
+@font-face {
+  font-family: 'Comic Sans';
+  src: url('/comic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+.font-alchemize {
+    font-family: 'Comic Sans', sans-serif;
+}
 body{
     overflow-x: hidden;
     width: 100vw;
@@ -32,7 +40,6 @@ body{
 
 	@theme inline {
     --font-heading: var(--font-sans);
-    --font-alchemize: "Saira Stencil", cursive;
     --font-sans: 'Inter Variable', sans-serif;
     --color-sidebar-ring: var(--sidebar-ring);
     --color-sidebar-border: var(--sidebar-border);
