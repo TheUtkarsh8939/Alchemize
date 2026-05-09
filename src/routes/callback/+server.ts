@@ -135,7 +135,7 @@ export const GET: RequestHandler = async ({ url, cookies }) => {
 			secure: true,
 			sameSite: "lax",
 			path: "/",
-			maxAge: 60 * 60 * 24 * 30 * 12,
+			maxAge: 60 * 60 * 24 * 30 * 6,
 		})
 	}
 	cookies.set("access_token", tokenBody.access_token, {
@@ -143,7 +143,7 @@ export const GET: RequestHandler = async ({ url, cookies }) => {
 		secure: true,
 		sameSite: "lax",
 		path: "/",
-		maxAge: 60 * 60 * 24 * 30 * 12,
+		maxAge: 60 * 60 * 24 * 30 * 6,
 	})
 
 
@@ -161,6 +161,5 @@ export const GET: RequestHandler = async ({ url, cookies }) => {
 		path: "/",
 		maxAge: 60 * 60 * 24 * 30 * 12,
 	})
-
 	throw redirect(303, "/dashboard")
 }
