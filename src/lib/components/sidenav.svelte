@@ -40,47 +40,47 @@
 <Dialog.Root>
 	<Dialog.Trigger
 		type="button"
-		class="absolute top-5 right-5 bg-chart-5/20 hover:bg-chart-5/40 border border-chart-5/50 p-2 rounded-full transition-colors"
+		class="top-5 right-5 absolute bg-chart-5/20 hover:bg-chart-5/40 p-2 border border-chart-5/50 rounded-full transition-colors x-999"
 	>
-		<CompassIcon class="h-6 w-6 text-chart-5" />
+		<CompassIcon class="w-6 h-6 text-chart-5" />
 	</Dialog.Trigger>
 
 	<Dialog.Content
-		class="min-w-[60vw] bg-background border-red-500/40 border-dashed p-0 overflow-hidden"
+		class="bg-background p-0 border-red-500/40 border-dashed min-w-[60vw] overflow-hidden"
 	>
 		<Dialog.Header
-			class="flex flex-row items-center justify-center gap-3 px-6 py-4 border-b border-red-500/20"
+			class="flex flex-row justify-center items-center gap-3 px-6 py-4 border-red-500/20 border-b"
 		>
 			<img
 				src="/Alchemize.png"
 				alt=""
-				class="h-10 w-10 shrink-0 object-contain"
+				class="w-10 h-10 object-contain shrink-0"
 			/>
 			<div>
-				<Dialog.Title class="text-2xl font-bold text-chart-5">
+				<Dialog.Title class="font-bold text-chart-5 text-2xl">
 					Alchemize
 				</Dialog.Title>
-				<p class="text-xs text-muted-foreground">
+				<p class="text-muted-foreground text-xs">
 					Where do you want to go today...
 				</p>
 			</div>
 		</Dialog.Header>
 
-		<div class="grid grid-cols-2 gap-3 p-6">
+		<div class="gap-3 grid grid-cols-2 p-6">
 			{#each navItems as item}
 				<Dialog.Close>
 					<a href={item.href} class="group">
 						<div
-							class="flex gap-4 p-4 rounded-lg border border-red-500/20 hover:border-red-500/60 hover:bg-red-950/20 transition-all"
+							class="flex gap-4 hover:bg-red-950/20 p-4 border border-red-500/20 hover:border-red-500/60 rounded-lg transition-all"
 						>
 							<div class="p-2">
-								<item.icon class="h-6 w-6 text-chart-5" />
+								<item.icon class="w-6 h-6 text-chart-5" />
 							</div>
 							<div class="flex flex-col items-start">
 								<p class="font-semibold text-foreground text-lg">
 									{item.label}
 								</p>
-								<p class="text-xs text-muted-foreground">{item.description}</p>
+								<p class="text-muted-foreground text-xs">{item.description}</p>
 							</div>
 						</div>
 					</a>
