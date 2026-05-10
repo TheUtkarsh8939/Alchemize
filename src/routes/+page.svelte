@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ArrowDown } from "lucide-svelte"
+	import { ArrowDown, X } from "lucide-svelte"
 	import { onMount } from "svelte"
 	import { browser } from "$app/environment"
 	import {
@@ -60,12 +60,20 @@
 		<section
 			class="flex flex-col justify-center gap-y-8 px-[clamp(20px,3vw,64px)] min-h-screen relative"
 		>
-			<div class="flex items-center gap-4 justify-self-start relative">
-				<img src="/Alchemist.webp" alt="" class="w-16 h-16" />
-				<span
-					class="font-alchemize text-primary text-2xl uppercase tracking-widest"
+			<div class="flex items-center gap-x-4 justify-self-start relative">
+				<a href="https://hackclub.com/"
+					><img
+						class="border-0 w-[128px] z-999"
+						src="https://assets.hackclub.com/flag-orpheus-top.svg"
+						alt="Hack Club"
+					/></a
 				>
-					Hack Club
+				<X class="font-bold h-7 w-7" />
+				<img src="/Alchemist.webp" alt="" class="w-10 h-10" />
+				<span
+					class="font-alchemize font-bold tracking-widest text-lg text-primary"
+				>
+					ALCHEMIZE
 				</span>
 			</div>
 
