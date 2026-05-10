@@ -147,7 +147,7 @@ import looseJson from 'loose-json';
 							<p class="mt-1 text-muted-foreground text-xs">
 								{formatHours(
 									hackSecondsByName.get(
-										project.fields.hackatime.trim().toLowerCase()
+										project.fields.hackatime?.trim().toLowerCase()
 									) ?? 0
 								)} Hours
 								<br />
