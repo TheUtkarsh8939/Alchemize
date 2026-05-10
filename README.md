@@ -17,7 +17,7 @@ This is a website for a draft YSWS "Alchemize", it would contain a dashboard and
 - The review platform would be a queue based system
 - The dashboard would be a place for users to submit their projects and view their projects, as well as to edit their projects and check status and feedback from reviewers
 - The website would be integrated with Hackclub Auth for user authentication and authorization
-- The website would also be integrated with "Master Alchemist" a slack bot for notifications and updates on projects
+- The website would also be integrated with "Master Alchemist", a Slack bot for notifications and updates on projects
 
 ## How to deploy
 Just clone and run `npm install` and then `npm run dev` to start the development server. 
