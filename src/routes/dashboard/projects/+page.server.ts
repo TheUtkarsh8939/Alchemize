@@ -146,7 +146,7 @@ export const actions = {
     }
 } satisfies Actions;
 export const load:PageServerLoad = async ({cookies})=>{
-       const accessToken = cookies.get('access_token');
+       const accessToken = cookies.get('access_token_new') ?? cookies.get('access_token');
         if (!accessToken) {
             return { error: 'No access token found' };
         }

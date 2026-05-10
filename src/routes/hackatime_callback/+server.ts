@@ -2,6 +2,7 @@ import { env } from '$env/dynamic/private';
 import { error, redirect } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { jwtDecode } from 'jwt-decode';
+import {getDataFromAccessToken} from '$lib/utils';
 
 type IdTokenClaims = {
 	email?: string;
@@ -49,16 +50,11 @@ export const GET: RequestHandler = async ({ url, cookies, fetch }) => {
 	let userRecordId = cookies.get('airtable_user_record_id') ?? '';
 
 	if (!userRecordId) {
-		const idToken = cookies.get('id_token') ?? cookies.get('id-token');
-		if (!idToken) {
-			throw error(401, 'Missing user identity token');
+		const at = cookies.get('access_token_new') ?? cookies.get('access_token');
+		if (!at) {
+			throw error(401, 'Missing access token cookie');
 		}
-
-		const decoded = jwtDecode<IdTokenClaims>(idToken);
-		const email = decoded.email;
-		if (!email) {
-			throw error(400, 'Email not found in identity token');
-		}
+		const email = (await getDataFromAccessToken(at)).email;
 
 		const filterByFormula = encodeURIComponent(`{email}="${email}"`);
 		const userLookupResponse = await fetch(

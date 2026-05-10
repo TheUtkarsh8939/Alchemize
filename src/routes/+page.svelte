@@ -18,7 +18,7 @@
 
 	const authUrl = hasIdToken
 		? `./dashboard`
-		: `https://auth.hackclub.com/oauth/authorize?client_id=${clientId}&response_type=code&scope=openid+profile+email&redirect_uri=${uri}`
+		: `https://auth.hackclub.com/oauth/authorize?client_id=${clientId}&response_type=code&scope=openid+profile+email+name+verification_status+slack_id&redirect_uri=${uri}`
 
 	onMount(() => {
 		fetch("/rsvp")
