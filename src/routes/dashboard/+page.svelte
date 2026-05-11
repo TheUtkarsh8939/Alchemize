@@ -1,6 +1,6 @@
 <script lang="ts">
+//@ts-ignore
 import looseJson from 'loose-json';
-
 	const { data } = $props()
 	type HackatimeProject = {
 		name?: string

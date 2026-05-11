@@ -8,25 +8,34 @@
 	} from "$env/static/public"
 	import Accordion from "$lib/components/accordion.svelte"
 	let rsvpCount: number | "Fetching" = $state("Fetching")
-
+	let showRotator = $state(false)
 	const clientId = PUBLIC_HACKCLUB_AUTH
 	const uri = encodeURIComponent(PUBLIC_HACKCLUB_REDIRECT)
 
-	const hasIdToken =
+	let hasaccessToken = $state(
 		browser &&
-		document.cookie.split("; ").find(row => row.startsWith("id_token="))
+			document.cookie.split("; ").find(row => row.startsWith("slack_id=")) !==
+				undefined
+	)
 
-	const authUrl = hasIdToken
-		? `./dashboard`
-		: `https://auth.hackclub.com/oauth/authorize?client_id=${clientId}&response_type=code&scope=openid+profile+email+name+verification_status+slack_id&redirect_uri=${uri}`
-
+	let authUrl = $derived(
+		hasaccessToken
+			? `./dashboard`
+			: `https://auth.hackclub.com/oauth/authorize?client_id=${clientId}&response_type=code&scope=openid+profile+email+name+verification_status+slack_id&redirect_uri=${uri}`
+	)
 	onMount(() => {
+		hasaccessToken =
+			document.cookie.split("; ").find(row => row.startsWith("slack_id=")) !==
+			undefined
+
+		authUrl = hasaccessToken
+			? `./dashboard`
+			: `https://auth.hackclub.com/oauth/authorize?client_id=${clientId}&response_type=code&scope=openid+profile+email+name+verification_status+slack_id&redirect_uri=${uri}`
 		fetch("/rsvp")
 			.then(res => res.json())
 			.then(data => (rsvpCount = data.count))
 
 		const blob = document.getElementById("blob")
-
 		const handleMouseMove = (event: MouseEvent) => {
 			blob?.animate(
 				{
@@ -58,12 +67,12 @@
 
 	<main class="z-10 relative">
 		<section
-			class="flex flex-col justify-center gap-y-8 px-[clamp(20px,3vw,64px)] min-h-screen relative"
+			class="flex flex-col justify-center gap-y-12 px-[clamp(20px,3vw,64px)] min-h-screen relative"
 		>
-			<div class="flex items-center gap-x-4 justify-self-start relative">
+			<div class="flex items-center gap-x-4 justify-self-start relative -top-[6vh]">
 				<a href="https://hackclub.com/"
 					><img
-						class="border-0 w-[128px] z-999"
+						class="border-0 w-32 z-999"
 						src="https://assets.hackclub.com/flag-orpheus-top.svg"
 						alt="Hack Club"
 					/></a
@@ -90,9 +99,15 @@
 				<span class="opacity-70 text-lg">Ages 13-18</span>
 			</p>
 
-			<a href={authUrl} class="cta-btn">
+			<a href={authUrl} class="cta-btn" onclick={() => showRotator = true}>
 				<span class="cta-text">GET STARTED</span>
+						{#if showRotator}
+						<div
+							class="w-7 h-7 border-4 border-gray-500 border-t-white rounded-full animate-spin"
+						></div>
+						{/if}
 				<div class="cta-chevrons">
+					
 					<span>›</span><span>›</span><span>›</span>
 				</div>
 			</a>
@@ -236,30 +251,30 @@
 			<Accordion
 				Title="What can you ship?"
 				Content="You can Ship any project, it can be general or a theme based"
-				addClass="faq-item h-20 w-[clamp(120px,90vw,1084px)] font-sans"
+				addClass="faq-item h-20 w-[clamp(120px,90vw,1084px)] font-sans  relative z-10"
 			/>
 			<Accordion
 				Title="How do I participate?"
 				Content="Just Click on Get Started"
-				addClass="faq-item h-20 w-[clamp(120px,90vw,1084px)] font-sans"
+				addClass="faq-item h-20 w-[clamp(120px,90vw,1084px)] font-sans relative z-10"
 			/>
 			<Accordion
 				Title="Who is Eligible?"
 				Content="Anyone between the ages of 13 and 18 and Hackclub Verified"
-				addClass="faq-item h-20 w-[clamp(120px,90vw,1084px)] font-sans"
+				addClass="faq-item h-20 w-[clamp(120px,90vw,1084px)] font-sans relative z-10"
 			/>
 			<Accordion
 				Title="What is Hackclub?"
 				Content="Hackclub is a community of creative coders who love to build and share their projects."
-				addClass="faq-item h-20 w-[clamp(120px,90vw,1084px)] font-sans"
+				addClass="faq-item h-20 w-[clamp(120px,90vw,1084px)] font-sans relative z-10"
 			/>
 			<Accordion
 				Title="Where can I find more information?"
 				Content="Checkout our Slack Channel <a class='text-red-200 hover:underline' target='_blank' href='https://hackclub.enterprise.slack.com/archives/C0ASY6R552R'>Here</a>"
-				addClass="faq-item h-20 w-[clamp(120px,90vw,1084px)] font-sans"
+				addClass="faq-item h-20 w-[clamp(120px,90vw,1084px)] font-sans relative z-10"
 			/>
 		</section>
-		<div class="w-screen leading-none -mt-[30vw] relative">
+		<div class="w-screen leading-none -mt-[30vw] z-10">
 			<svg
 				width="100%"
 				height="100%"

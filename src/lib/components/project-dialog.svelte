@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { enhance } from "$app/forms"
 	import * as Dialog from "$lib/components/ui/dialog"
 	import { Input } from "$lib/components/ui/input"
 	import { Textarea } from "$lib/components/ui/textarea"
@@ -28,7 +29,7 @@
 		name?: string
 		total_seconds?: number
 	}
-
+	let showSecondRotator = $state(false)
 	let {
 		open = $bindable(),
 		mode,
@@ -83,6 +84,12 @@
 				method="POST"
 				action={mode === "create" ? "?/create" : "?/update"}
 				class="flex flex-col gap-6 pt-4"
+				use:enhance={() => {
+					showSecondRotator = true
+					return async ({ result }) => {
+						showSecondRotator = false
+					}
+				}}
 			>
 				{#if mode === "update"}
 					<input type="hidden" name="recordId" value={project?.id} />
@@ -207,6 +214,11 @@
 					variant="outline"
 					class="w-40 border-red-500 border-dashed"
 				>
+					{#if showSecondRotator}
+						<div
+							class="w-4 h-4 border-3 border-gray-500 border-t-white rounded-full animate-spin"
+						></div>
+					{/if}
 					{mode === "create" ? "Create Project" : "Update Project"}
 				</Button>
 			</form>
