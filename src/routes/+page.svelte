@@ -67,12 +67,12 @@
 
 	<main class="z-10 relative">
 		<section
-			class="flex flex-col justify-center gap-y-12 px-[clamp(20px,3vw,64px)] min-h-screen relative"
+			class="flex flex-col justify-center gap-y-12 px-[clamp(20px,3vw,64px)] min-h-screen"
 		>
-			<div class="flex items-center gap-x-4 justify-self-start relative -top-[6vh]">
+			<div class="flex items-center gap-x-4 justify-self-start absolute top-[6vh] h-16">
 				<a href="https://hackclub.com/"
 					><img
-						class="border-0 w-32 z-999"
+						class="border-0 w-31 z-999"
 						src="https://assets.hackclub.com/flag-orpheus-top.svg"
 						alt="Hack Club"
 					/></a
@@ -84,6 +84,9 @@
 				>
 					ALCHEMIZE
 				</span>
+			</div>
+			<div class="h-16 w-2 relative">
+
 			</div>
 
 			<h1 class="font-alchemize hero-title">ALCHEMIZE</h1>
