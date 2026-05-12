@@ -67,10 +67,10 @@
 
 	<main class="z-10 relative">
 		<section
-			class="flex flex-col justify-center space-y-9 px-[clamp(20px,3vw,64px)] min-h-screen relative"
+			class="flex flex-col justify-center pt-16 gap-y-11 px-[clamp(20px,3vw,64px)] min-h-screen relative"
 		>
 			<div
-				class="flex items-center gap-x-4 justify-self-start absolute top-0 left-10"
+				class="flex items-center gap-x-4 justify-self-start absolute top-12 left-10"
 			>
 				<a href="https://hackclub.com/"
 					><img
