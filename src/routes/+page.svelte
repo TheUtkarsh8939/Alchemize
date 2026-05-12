@@ -67,12 +67,14 @@
 
 	<main class="z-10 relative">
 		<section
-			class="flex flex-col justify-center gap-y-12 px-[clamp(20px,3vw,64px)] min-h-screen"
+			class="flex flex-col justify-center space-y-9 px-[clamp(20px,3vw,64px)] min-h-screen relative"
 		>
-			<div class="flex items-center gap-x-4 justify-self-start absolute top-[6vh] h-16">
+			<div
+				class="flex items-center gap-x-4 justify-self-start absolute top-0 left-10"
+			>
 				<a href="https://hackclub.com/"
 					><img
-						class="border-0 w-31 z-999"
+						class="border-0 w-28 z-999"
 						src="https://assets.hackclub.com/flag-orpheus-top.svg"
 						alt="Hack Club"
 					/></a
@@ -84,9 +86,6 @@
 				>
 					ALCHEMIZE
 				</span>
-			</div>
-			<div class="h-16 w-2 relative">
-
 			</div>
 
 			<h1 class="font-alchemize hero-title">ALCHEMIZE</h1>
@@ -102,15 +101,14 @@
 				<span class="opacity-70 text-lg">Ages 13-18</span>
 			</p>
 
-			<a href={authUrl} class="cta-btn" onclick={() => showRotator = true}>
+			<a href={authUrl} class="cta-btn" onclick={() => (showRotator = true)}>
 				<span class="cta-text">GET STARTED</span>
-						{#if showRotator}
-						<div
-							class="w-7 h-7 border-4 border-gray-500 border-t-white rounded-full animate-spin"
-						></div>
-						{/if}
+				{#if showRotator}
+					<div
+						class="w-7 h-7 border-4 border-gray-500 border-t-white rounded-full animate-spin"
+					></div>
+				{/if}
 				<div class="cta-chevrons">
-					
 					<span>›</span><span>›</span><span>›</span>
 				</div>
 			</a>
@@ -131,7 +129,7 @@
 				</p>
 			</div>
 
-			<a href="#features" class="self-start mt-4 animate-bounce">
+			<a href="#features" class="self-start animate-bounce">
 				<ArrowDown class="w-8 h-8 text-primary" />
 			</a>
 		</section>
@@ -294,7 +292,9 @@
 					class="transition-all duration-300 ease-in-out delay-150 path-1"
 				></path></svg
 			>
-			<footer class="w-full px-20 absolute items-center flex  bg-[#1a0000] pb-10 gap-16 justify-around">
+			<footer
+				class="w-full px-20 absolute items-center flex bg-[#1a0000] pb-10 gap-16 justify-around"
+			>
 				<div class="row1 flex flex-col gap-5 w-33">
 					<h3 class="text-3xl font-semibold font-alchemize">Hackclub</h3>
 					<ul class="flex list-none flex-col gap-4">
@@ -303,24 +303,26 @@
 						<li><a href="https://hackclub.com/brand/">Brand Guide</a></li>
 						<li><a href="https://hackclub.com/philanthropy/">Donate</a></li>
 						<li><a href="https://hackclub.com/imprint/">Imprint</a></li>
-
-						
 					</ul>
 				</div>
 				<div class="midrow flex flex-col gap-4">
 					<h2>Made by TheUtkarsh8939 and Coolcream with love 💖</h2>
 					<h2>© Hackclub, All rights reserved</h2>
-
 				</div>
-								<div class="row2 flex flex-col gap-5 w-43">
+				<div class="row2 flex flex-col gap-5 w-43">
 					<h3 class="text-3xl font-semibold font-alchemize">Resources</h3>
 					<ul class="flex list-none flex-col gap-4">
-						<li><a href="https://hackclub.com/philosophy/">Community Events</a></li>
+						<li>
+							<a href="https://hackclub.com/philosophy/">Community Events</a>
+						</li>
 						<li><a href="https://hackclub.com/team/">Jams</a></li>
-						<li><a href="https://hackclub.com/https://toolbox.hackclub.com/">Toolbox</a></li>
+						<li>
+							<a href="https://hackclub.com/https://toolbox.hackclub.com/"
+								>Toolbox</a
+							>
+						</li>
 						<li><a href="https://hackclub.com/conduct/">Code of Conduct</a></li>
 						<li><a href="https://hackclub.com/privacy/">Privacy Policy</a></li>
-
 					</ul>
 				</div>
 			</footer>
