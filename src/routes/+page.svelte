@@ -1,5 +1,12 @@
 <script lang="ts">
-	import { ArrowDown, X } from "lucide-svelte"
+	import {
+		ArrowDown,
+		Blocks,
+		FlaskConical,
+		Rocket,
+		ShoppingCart,
+		X,
+	} from "lucide-svelte"
 	import { onMount } from "svelte"
 	import { browser } from "$app/environment"
 	import {
@@ -70,7 +77,7 @@
 			class="flex flex-col justify-center pt-16 gap-y-11 px-[clamp(20px,3vw,64px)] min-h-screen relative"
 		>
 			<div
-				class="flex items-center gap-x-4 justify-self-start absolute top-12 left-10"
+				class="flex items-center gap-x-4 justify-self-start absolute top-0 left-10"
 			>
 				<a href="https://hackclub.com/"
 					><img
@@ -82,7 +89,7 @@
 				<X class="font-bold h-7 w-7" />
 				<img src="/Alchemist.webp" alt="" class="w-10 h-10" />
 				<span
-					class="font-alchemize font-bold tracking-widest text-lg text-primary"
+					class="font-alchemize font-bold tracking-widest text-lg text-primary select-none pointer-events-none"
 				>
 					ALCHEMIZE
 				</span>
@@ -162,7 +169,7 @@
 
 			<div class="gap-6 grid grid-cols-1 md:grid-cols-2 w-full max-w-5xl">
 				<div class="feature-card">
-					<span class="text-4xl">⚗️</span>
+					<Blocks class="h-8 w-8 mb-1" />
 					<h3 class="font-alchemize text-red-300 text-xl">Create</h3>
 					<p class="text-gray-400 text-sm leading-relaxed">
 						Pick a theme (Sci-Fi, Anime, or Tribute) and track hours via
@@ -170,7 +177,7 @@
 					</p>
 				</div>
 				<div class="feature-card">
-					<span class="text-4xl">🚀</span>
+					<Rocket class="h-8 w-8 mb-1" />
 					<h3 class="font-alchemize text-red-300 text-xl">Ship It</h3>
 					<p class="text-gray-400 text-sm leading-relaxed">
 						Submit your project for review by Master Alchistants to earn theme
@@ -178,7 +185,7 @@
 					</p>
 				</div>
 				<div class="feature-card">
-					<span class="text-4xl">🧪</span>
+					<FlaskConical class="h-8 w-8 mb-1" />
 					<h3 class="font-alchemize text-red-300 text-xl">Mix Potions</h3>
 					<p class="text-gray-400 text-sm leading-relaxed">
 						Convert currencies into Potion Mix. Mixing multiple types grants
@@ -186,7 +193,7 @@
 					</p>
 				</div>
 				<div class="feature-card">
-					<span class="text-4xl">🛒</span>
+					<ShoppingCart class="h-8 w-8 mb-1" />
 					<h3 class="font-alchemize text-red-300 text-xl">Dynamic Shop</h3>
 					<p class="text-gray-400 text-sm leading-relaxed">
 						Spend your Potion Mix on rewards. New items are added weekly based
@@ -202,7 +209,7 @@
 			  h-auto"
 		>
 			<h2 class="font-alchemize text-center section-title text-2xl">
-				THE THREE THEMES S1
+				The Three Themes of Season 1
 			</h2>
 
 			<div class="gap-6 grid grid-cols-1 md:grid-cols-3 w-full max-w-5xl">
@@ -250,28 +257,33 @@
 		>
 			<h2 class="font-alchemize text-center section-title text-3xl">FAQ</h2>
 			<Accordion
-				Title="What can you ship?"
-				Content="You can Ship any project, it can be general or a theme based"
+				Title="What is a 'ship'?"
+				Content="A 'ship' is the project you submit to this event. You can ship any general project or a project releted to one of the <a class='text-chart-5 p-1 hover:bg-primary/80 transition rounded hover:text-white' href='#themes'>themes</a>"
 				addClass="faq-item h-20 w-[clamp(120px,90vw,1084px)] font-sans  relative z-10"
 			/>
 			<Accordion
 				Title="How do I participate?"
-				Content="Just Click on Get Started"
+				Content="Just Click on Get Started button on the home page or click on <a class='text-chart-5 p-1 hover:bg-primary/80 transition rounded hover:text-white' target='_blank' href={authUrl}>this</a> link."
 				addClass="faq-item h-20 w-[clamp(120px,90vw,1084px)] font-sans relative z-10"
 			/>
 			<Accordion
 				Title="Who is Eligible?"
-				Content="Anyone between the ages of 13 and 18 and Hackclub Verified"
+				Content="Anyone ages 13-18 who isn't banned from Hack Club can participate."
+				addClass="faq-item h-20 w-[clamp(120px,90vw,1084px)] font-sans relative z-10"
+			/>
+			<Accordion
+				Title="How is time tracked?"
+				Content="Software development time is tracked using <a class='text-chart-5 p-1 hover:bg-primary/80 transition rounded hover:text-white' target='_blank' href='hackatime.hackclub.com'>Hackatime</a>"
 				addClass="faq-item h-20 w-[clamp(120px,90vw,1084px)] font-sans relative z-10"
 			/>
 			<Accordion
 				Title="What is Hackclub?"
-				Content="Hackclub is a community of creative coders who love to build and share their projects."
+				Content="Hackclub is a community of creative coders who love to build and share their projects. It is also the world’s largest nonprofit movement of teenagers making cool projects."
 				addClass="faq-item h-20 w-[clamp(120px,90vw,1084px)] font-sans relative z-10"
 			/>
 			<Accordion
 				Title="Where can I find more information?"
-				Content="Checkout our Slack Channel <a class='text-red-200 hover:underline' target='_blank' href='https://hackclub.enterprise.slack.com/archives/C0ASY6R552R'>Here</a>"
+				Content="If you have any questions or need help with anything, just join the <a class='text-chart-5 p-1 hover:bg-primary/80 transition rounded hover:text-white' target='_blank' href='https://hackclub.enterprise.slack.com/archives/C0ASY6R552R'>#alchemize-help</a> channel in the Hack Club Slack! You can ask for help there, and the community will be happy to assist you. "
 				addClass="faq-item h-20 w-[clamp(120px,90vw,1084px)] font-sans relative z-10"
 			/>
 		</section>
@@ -306,7 +318,7 @@
 					</ul>
 				</div>
 				<div class="midrow flex flex-col gap-4">
-					<h2>Made by TheUtkarsh8939 and Coolcream with love 💖</h2>
+					<h2>Made with 💖 by TheUtkarsh8939 and Coolcream</h2>
 					<h2>© Hackclub, All rights reserved</h2>
 				</div>
 				<div class="row2 flex flex-col gap-5 w-43">
@@ -403,6 +415,8 @@
 	.hero-title {
 		font-size: clamp(2rem, 12vw, 10rem);
 		line-height: 1;
+		pointer-events: none;
+		user-select: none;
 		color: transparent;
 		-webkit-text-stroke: 3px var(--color-primary);
 	}
