@@ -148,7 +148,7 @@
 						rows="3"
 						placeholder="The stuff worth keeping..."
 						class="w-full resize-none rounded-xl border border-zinc-800 bg-zinc-950/70 px-4 py-3 text-primary-foreground placeholder:text-zinc-600 outline-none transition focus:border-primary"
-					/>
+					></textarea>
 				</div>
 
 				<div>
@@ -165,7 +165,7 @@
 						rows="3"
 						placeholder="Don't hold back..."
 						class="w-full resize-none rounded-xl border border-zinc-800 bg-zinc-950/70 px-4 py-3 text-primary-foreground placeholder:text-zinc-600 outline-none transition focus:border-primary"
-					/>
+					></textarea>
 				</div>
 
 				<div>
@@ -182,7 +182,7 @@
 						rows="3"
 						placeholder="Anything we didn't ask..."
 						class="w-full resize-none rounded-xl border border-zinc-800 bg-zinc-950/70 px-4 py-3 text-primary-foreground placeholder:text-zinc-600 outline-none transition focus:border-primary"
-					/>
+					></textarea>
 				</div>
 
 				<div>

@@ -164,7 +164,7 @@
 						With more mixing this time</span
 					>
 				</h3>
-				<!-- <span
+				<span
 					class="mt-2 font-display text-foreground font-semibold tracking-wider"
 				>
 					Starts soon...
@@ -326,7 +326,10 @@
 					<p
 						class="text-card-foreground text-xs xl:text-base 2xl:text-lg font-body leading-relaxed font-body"
 					>
-						Make a bot that does something useful or fun! It could be a Discord bot or a slack bot or a bot for your own website. It could be a bot that does something fun or a bot that does something useful. The choice is yours!
+						Make a bot that does something useful or fun! It could be a Discord
+						bot or a slack bot or a bot for your own website. It could be a bot
+						that does something fun or a bot that does something useful. The
+						choice is yours!
 					</p>
 					<p
 						class="flex gap-2 text-foreground text-xs xl:text-sm 2xl:text-base font-body font-medium leading-relaxed font-body"
@@ -369,8 +372,9 @@
 						class="text-card-foreground text-xs xl:text-base 2xl:text-lg font-body leading-relaxed font-body"
 					>
 						Make something by which your code returns art. Like a dynamic
-						website creating various patterns or a generative art piece or a music visualizer. Anything that is
-						artistic and uses code to create it.
+						website creating various patterns or a generative art piece or a
+						music visualizer. Anything that is artistic and uses code to create
+						it.
 					</p>
 					<p
 						class="flex gap-2 text-foreground text-xs xl:text-sm 2xl:text-base font-body font-medium leading-relaxed font-body"
